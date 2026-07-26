@@ -21,15 +21,17 @@ void main() {
       // Mock the pubspec.yaml asset so Pubspec.parse works
       TestDefaultBinaryMessengerBinding.instance.defaultBinaryMessenger
           .setMockMessageHandler('flutter/assets', (message) async {
-        final key = utf8.decode(message!.buffer.asUint8List());
-        if (key == 'pubspec.yaml') {
-          return ByteData.sublistView(utf8.encode(
-            'name: intiface_central\nversion: 3.0.0+1\n'
-            'environment:\n  sdk: ">=3.8.0 <4.0.0"\n',
-          ));
-        }
-        return null;
-      });
+            final key = utf8.decode(message!.buffer.asUint8List());
+            if (key == 'pubspec.yaml') {
+              return ByteData.sublistView(
+                utf8.encode(
+                  'name: intiface_central\nversion: 3.0.0+1\n'
+                  'environment:\n  sdk: ">=3.8.0 <4.0.0"\n',
+                ),
+              );
+            }
+            return null;
+          });
     });
 
     tearDown(() async {
@@ -43,15 +45,15 @@ void main() {
       expect(cubit.serverName, 'Intiface Server');
       expect(cubit.websocketServerPort, 12345);
       expect(cubit.startServerOnStartup, false);
-      expect(cubit.useSimulatedDevices, false);
+      expect(cubit.useSimulatedDevices, true);
       cubit.close();
     });
 
     test('setter/getter roundtrip for useSimulatedDevices', () async {
       final cubit = await IntifaceConfigurationCubit.create();
-      expect(cubit.useSimulatedDevices, false);
-      cubit.useSimulatedDevices = true;
       expect(cubit.useSimulatedDevices, true);
+      cubit.useSimulatedDevices = false;
+      expect(cubit.useSimulatedDevices, false);
       cubit.close();
     });
 

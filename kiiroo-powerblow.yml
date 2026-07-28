@@ -1,0 +1,21 @@
+---
+defaults:
+  name: Kiiroo PowerBlow
+  features:
+  - id: 994ebcd3-fb8d-43cd-b4b9-56656298b950
+    description: Suction
+    output:
+      constrict:
+        value:
+        - 0
+        - 255
+    index: 0
+  id: d3c620bc-229f-4acb-95c5-d102a7b11e85
+communication:
+- btle:
+    names:
+    - PowerBlow R1
+    services:
+      00001400-0000-1000-8000-00805f9b34fb:
+        tx: '00001401-0000-1000-8000-00805f9b34fb'
+        txmode: '00001402-0000-1000-8000-00805f9b34fb'

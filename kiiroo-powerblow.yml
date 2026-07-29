@@ -7,7 +7,7 @@ defaults:
     output:
       constrict:
         value:
-        - 0
+        - 1
         - 255
     index: 0
   id: d3c620bc-229f-4acb-95c5-d102a7b11e85
